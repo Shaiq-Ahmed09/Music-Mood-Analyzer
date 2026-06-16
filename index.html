@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Mood Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Spotify Green */
+        .bg-spotify { background-color: #1DB954; }
+        .hover-spotify:hover { background-color: #1ed760; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col items-center py-12">
+
+    <div class="text-center mb-10">
+        <h1 class="text-5xl font-bold mb-4 tracking-tight">Music Mood <span class="text-[#1DB954]">Analyzer</span></h1>
+        <p class="text-gray-400 text-lg">Select your vibe. Powered by Machine Learning.</p>
+    </div>
+
+    <div class="flex gap-4 mb-12">
+        <button onclick="getMusic('happy')" class="px-6 py-3 rounded-full font-bold bg-yellow-500 hover:bg-yellow-400 text-gray-900 transition shadow-lg shadow-yellow-500/30">
+            ☀️ Happy
+        </button>
+        <button onclick="getMusic('sad')" class="px-6 py-3 rounded-full font-bold bg-blue-600 hover:bg-blue-500 text-white transition shadow-lg shadow-blue-600/30">
+            🌧️ Sad
+        </button>
+        <button onclick="getMusic('energetic')" class="px-6 py-3 rounded-full font-bold bg-spotify hover-spotify text-white transition shadow-lg shadow-green-500/30">
+            🔥 Energetic
+        </button>
+        <button onclick="getMusic('calm')" class="px-6 py-3 rounded-full font-bold bg-purple-600 hover:bg-purple-500 text-white transition shadow-lg shadow-purple-600/30">
+            ☕ Calm
+        </button>
+    </div>
+
+    <div id="loader" class="hidden text-xl text-gray-400 font-semibold mb-8 animate-pulse">
+        Analyzing acoustic features & calculating vectors...
+    </div>
+
+    <div id="results-container" class="w-full max-w-5xl px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+
+    <script>
+        async function getMusic(mood) {
+            const resultsContainer = document.getElementById('results-container');
+            const loader = document.getElementById('loader');
+            
+            // Clear old results and show loader
+            resultsContainer.innerHTML = '';
+            loader.classList.remove('hidden');
+
+            try {
+                // Call your FastAPI backend
+                const response = await fetch(`http://127.0.0.1:8000/api/recommend?mood=${mood}&limit=6`);
+                const data = await response.json();
+                
+                // Hide loader
+                loader.classList.add('hidden');
+
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                // Loop through the tracks and create Spotify widgets
+                data.tracks.forEach(track => {
+                    // Extract the raw ID from "spotify:track:12345abcde"
+                    const trackId = track.uri.split(':')[2];
+                    
+                    // Create the Spotify iframe
+                    const iframe = document.createElement('iframe');
+                    iframe.src = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`;
+                    iframe.width = "100%";
+                    iframe.height = "152";
+                    iframe.frameBorder = "0";
+                    iframe.allowFullscreen = true;
+                    iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+                    iframe.loading = "lazy";
+                    iframe.className = "rounded-xl shadow-lg border border-gray-800";
+
+                    // Add to the page
+                    resultsContainer.appendChild(iframe);
+                });
+
+            } catch (error) {
+                loader.classList.add('hidden');
+                console.error("Error fetching music:", error);
+                alert("Failed to connect to the backend. Is your FastAPI server running?");
+            }
+        }
+    </script>
+</body>
+</html>
