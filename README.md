@@ -16,7 +16,7 @@ Spotify Integration: Renders playable Spotify <iframe/> widgets directly on the 
 
 AuraStream Custom Player: A standalone React frontend demonstrating complex state management (volume, progress bars, file streaming) for local .mp3/.wav files.
 
-# 🛠️ Tech Stack
+# Tech Stack
 
 Backend: Python, FastAPI, Uvicorn
 
