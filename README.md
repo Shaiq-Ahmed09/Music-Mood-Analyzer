@@ -1,10 +1,10 @@
-# 🎵 Music Mood Analyzer & Custom Player
+# Music Mood Analyzer & Custom Player
 
 A full-stack, machine-learning-powered application that analyzes human moods and recommends personalized Spotify tracks based on acoustic features (Valence, Energy, Danceability, etc.).
 
 This repository also includes AuraStream, an entirely custom-built React music player that allows users to upload and stream local audio files in-memory with a sleek, modern UI.
 
-# ✨ Features
+# Features
 
 ML Recommendation Engine: Uses scikit-learn (MinMaxScaler, Cosine Similarity) to map requested moods to an ideal 9-dimensional acoustic vector.
 
