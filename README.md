@@ -59,7 +59,7 @@ The API will be live at http://127.0.0.1:8000. You can test the endpoints intera
 
 Simply open index.html in your web browser or run it via a Live Server extension to see the Mood Analyzer UI.
 
-# 🎨 AuraStream (React Custom Player)
+# AuraStream (React Custom Player)
 
 To run the custom standalone React player:
 
