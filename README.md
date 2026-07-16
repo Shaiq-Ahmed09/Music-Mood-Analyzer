@@ -26,7 +26,7 @@ Frontend (Analyzer): Vanilla HTML, JavaScript, Tailwind CSS (CDN)
 
 Frontend (AuraStream): React.js, Tailwind CSS, Lucide Icons
 
-# 🚀 Getting Started (Backend ML Engine)
+# Getting Started (Backend ML Engine)
 
 1. Download the Dataset
 
