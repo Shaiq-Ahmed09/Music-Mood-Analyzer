@@ -66,7 +66,7 @@ Navigate to the React app directory (if separated) or use Vite/Create-React-App 
 
 Upload local audio files via the UI to begin streaming.
 
-# 🧠 How the Machine Learning Works
+# How the Machine Learning Works
 
 The engine uses Content-Based Filtering. When a user selects a mood (e.g., "Energetic"), the backend defines an "Ideal Target Vector" (High Energy, High Tempo, Low Acousticness). It then uses Cosine Similarity to compare this ideal vector against 278,000 tracks, instantly finding the closest matching songs based on their acoustic features.
 
