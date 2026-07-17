@@ -51,7 +51,6 @@ pip install -r requirements.txt
 
 python app.py
 
-
 The API will be live at http://127.0.0.1:8000. You can test the endpoints interactively via the Swagger UI at http://127.0.0.1:8000/docs.
 
 4. Run the Frontend
