@@ -28,7 +28,7 @@ Frontend (AuraStream): React.js, Tailwind CSS, Lucide Icons
 
 # Getting Started (Backend ML Engine)
 
-1. Download the Dataset
+*1. Download the Dataset*
 
 Due to GitHub size limits, the 278k Spotify Audio Features dataset is not included in this repo.
 
@@ -38,18 +38,22 @@ Create a folder named data/ in the root directory.
 
 Place the .csv file inside the data/ folder.
 
-2. Set up the Environment
+*2. Set up the Environment*
 
 # Create and activate virtual environment
+```
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-
+```
 # Install dependencies
+```
 pip install -r requirements.txt
+```
 
 3. Run the Server
-
+```
 python app.py
+```
 
 The API will be live at http://127.0.0.1:8000. You can test the endpoints interactively via the Swagger UI at http://127.0.0.1:8000/docs.
 
